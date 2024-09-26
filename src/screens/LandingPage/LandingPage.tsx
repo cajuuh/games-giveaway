@@ -24,7 +24,7 @@ const LandingPage = () => {
           </h1>
         </div>
       </header>
-      <div className="sticky top-52">
+      <div className="top-52">
         <div className="relative w-full max-w-lg z-0 right-48">
           <div className="absolute top-0 md:right-64 sm:-left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
           <div className="absolute top-0 md:right-64 sm:-right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -35,29 +35,35 @@ const LandingPage = () => {
         <h2 className="text-2xl font-semibold mb-10 pt-8 font-jacquarda">
           Check it out!
         </h2>
-        {games.length > 0 ? (
-          <ul className="w-full max-w-max grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {games.map((game: Game) => (
-              <li
-                key={game.id}
-                className="bg-gray/30 shadow p-5 rounded-lg backdrop-blur-sm"
-              >
-                <CardComponent
-                  thumbnail={game.thumbnail}
-                  title={game.title}
-                  description={game.description}
-                  openGiveawayUrl={game.open_giveaway_url}
-                />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Loading games...</p>
-        )}
+
+        {/* Add the scrollable container here */}
+        <div className="h-full overflow-y-auto overscroll-none overscroll-y-none">
+          <div className="w-full max-w-max h-[700px]">
+            {games.length > 0 ? (
+              <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {games.map((game: Game) => (
+                  <li
+                    key={game.id}
+                    className="bg-gray/30 shadow p-5 rounded-lg backdrop-blur-sm"
+                  >
+                    <CardComponent
+                      thumbnail={game.thumbnail}
+                      title={game.title}
+                      description={game.description}
+                      openGiveawayUrl={game.open_giveaway_url}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Loading games...</p>
+            )}
+          </div>
+        </div>
       </main>
 
       <footer className="w-full py-4 bg-gray-800 text-center text-white">
-        &copy; 2024 Your Company. All rights reserved.
+        &copy; 2024. Made with ☕️ by Pedro Alcantara.
       </footer>
     </div>
   );
